@@ -20,6 +20,6 @@ Una aplicación de consola interactiva desarrollada en Python para gestionar pro
 3. Ejecuta:
    ```bash
    python gestor_inventario.py
-
+   ```
 ---
 ### 🏆 Balance del Hito (Día 10 completado)

@@ -1,6 +1,6 @@
 #Entrada de datos
 catalogo = []
-print(len(catalogo) == 0)
+
 while True:
     print("1. Ver catálogo de productos")
     print("2. Registrar nuevo producto")
@@ -17,9 +17,28 @@ while True:
             for producto in catalogo:
                 print(f"- {producto['nombre']}: ${producto['precio']:.2f} (Stock: {producto['stock']})")
     elif opcion == "2":
-        nombre = input("Ingrese el nombre del producto: ")
-        precio = float(input(f"Ingrese el precio de '{nombre}': $ "))
-        stock = int(input(f"Ingrese la cantidad en stock de '{nombre}': "))
+        nombre = input("Ingrese el nombre del producto: ").strip()
+        while nombre == "":
+            print("❌ El nombre del producto no puede estar vacío. Intenta de nuevo.")
+            nombre = input("Ingrese el nombre del producto: ").strip()
+        while True:
+            try:
+                precio = float(input(f"Ingrese el precio de '{nombre}': $ "))
+                if precio < 0:
+                    print("❌ El precio no puede ser negativo. Intenta de nuevo.")
+                    continue
+                break
+            except ValueError:
+                print("❌ Entrada inválida. Por favor, ingrese un número válido para el precio.")
+        while True:
+            try:
+                stock = int(input(f"Ingrese la cantidad en stock de '{nombre}': "))
+                if stock < 0:
+                    print("❌ La cantidad en stock no puede ser negativa. Intenta de nuevo.")
+                    continue
+                break
+            except ValueError:
+                print("❌ Entrada inválida. Por favor, ingrese un número entero para el stock.")
         producto = {"nombre": nombre, "precio": precio, "stock": stock}
         catalogo.append(producto)
         print(f"'{nombre}' ✅ Producto agregado con éxito.")
